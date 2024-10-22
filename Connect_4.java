@@ -27,20 +27,20 @@ public class Connect_4 {
             }
         }
         //horizontal - faydhi
-        for(int j = 0; j < 6; j++){
+        for(int i = 0; i < 6; i++){
             previousPlayer = 0;
             count = 0;
-            for (int i = 0; i < 7; i++){
-                if(previousPlayer == board[j][i] || previousPlayer == 0){
+            for (int j = 0; j < 7; j++){
+                if(previousPlayer == board[i][j] || previousPlayer == 0){
                     count++;
-                    previousPlayer = board[j][i];
+                    previousPlayer = board[i][j];
                 }
                 else{
-                    if (board[j][i] == 0){
-                        i = 8;
+                    if (board[i][j] == 0){
+                        j = 8;
                     }
                     else{
-                        previousPlayer = board[j][i];
+                        previousPlayer = board[i][j];
                         count = 0;
                     }
                 }
