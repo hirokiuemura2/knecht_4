@@ -1,6 +1,5 @@
 public class Connect_4 {
     public static void main(String[] args) {
-        System.out.println("hello world");
     }
     //returns the winner (1, 0, or -1)
     public static int checkScore(int[][] board) {
@@ -9,9 +8,11 @@ public class Connect_4 {
         //vertical
         for (int i = 0; i < 7; i++) {
             previousPlayer = 0;
+            count = 0;
             for (int j = 0; j < 6; j++) {
                 if (previousPlayer == board[i][j] || previousPlayer == 0) {
                     count++;
+                    previousPlayer = board[i][j];
                 } else {
                     if (board[i][j] == 0) {
                         j = 7;
@@ -26,6 +27,27 @@ public class Connect_4 {
             }
         }
         //horizontal - faydhi
+
+        //diagonal
+        for (int j = 2; j >= 0; j--) {
+            previousPlayer = 0;
+            count = 0;
+            int row = j;
+            int col = 0;
+            for (int i = 0; row + i < 6; i++) {
+                if (previousPlayer == board[row + i][col + i] || previousPlayer == 0) {
+                    count++;
+                    previousPlayer = board[row][col];
+                } else if (board[row + i][col + i] == 0) {
+                    i = 7;
+                } else {
+                    previousPlayer = board[row][col];
+                }
+                if (count == 4) {
+                    return previousPlayer;
+                }
+            }
+        }
         return 0;
     }
 }
