@@ -57,12 +57,12 @@ public class Connect_4 {
             int row = j;
             int col = 0;
             for (int i = 0; row + i < 6; i++) {
-                if (previousPlayer == board[row + i][col + i] || previousPlayer == 0) {
+                if (previousPlayer == board[col + i][row + i] || previousPlayer == 0) {
                     count++;
                 } else {
                     count = 0;
                 }
-                previousPlayer = board[row + i][col + j];
+                previousPlayer = board[col + i][row + i];
                 if (count == 4) {
                     return previousPlayer;
                 }
@@ -71,10 +71,8 @@ public class Connect_4 {
         for (int i = 0; i < 7; i++) {
             previousPlayer = 0;
             count = 0;
-            for (int j = 0; j < 6; j++) {
-                if (i + j >= 7) {
-                    j = 7;
-                } else if (previousPlayer == board[i + j][j] || previousPlayer == 0) {
+            for (int j = 0; j < 6 && i + j < 7; j++) {
+                if (previousPlayer == board[i + j][j] || previousPlayer == 0) {
                     count++;
                 } else {
                     count = 0;
@@ -86,13 +84,30 @@ public class Connect_4 {
             }
             previousPlayer = 0;
             count = 0;
-            for (int j = 0; j < 6; j++) {
+            for (int j = 0; j < 6 && i - j >= 0; j++) {
                 if (previousPlayer == board[i - j][j] || previousPlayer == 0) {
                     count++;
                 } else {
                     count = 0;
                 }
                 previousPlayer = board[i - j][j];
+                if (count == 4) {
+                    return previousPlayer;
+                }
+            }
+        }
+        for (int j = 0; j < 3; j++) {
+            previousPlayer = 0;
+            count = 0;
+            int row = j;
+            int col = 7;
+            for (int i = 0; col - i >= 0; i++) {
+                if (previousPlayer == board[col - i][row + i] || previousPlayer == 0) {
+                    count++;
+                } else {
+                    count = 0;
+                }
+                previousPlayer = board[col - i][row + i];
                 if (count == 4) {
                     return previousPlayer;
                 }
