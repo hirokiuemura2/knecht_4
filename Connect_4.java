@@ -27,6 +27,28 @@ public class Connect_4 {
             }
         }
         //horizontal - faydhi
+        for(int j = 0; j < 6; j++){
+            int previousPlayer = 0;
+            int count = 0;
+            for (int i = 0; i < 7; i++){
+                if(previousPlayer == board[j][i] || previousPlayer == 0){
+                    count++;
+                    previousPlayer = board[j][i];
+                }
+                else{
+                    if (board[j][i] == 0){
+                        i = 8;
+                    }
+                    else{
+                        previousPlayer = board[j][i];
+                        count = 1;
+                    }
+                }
+                if (count == 4){
+                    return previousPlayer;
+                }
+            }
+        }
 
         //diagonal
         for (int j = 2; j >= 0; j--) {
@@ -37,10 +59,12 @@ public class Connect_4 {
             for (int i = 0; row + i < 6; i++) {
                 if (previousPlayer == board[row + i][col + i] || previousPlayer == 0) {
                     count++;
+                    previousPlayer = board[row][col];
+                } else if (board[row + i][col + i] == 0) {
+                    i = 7;
                 } else {
-                    count = 0;
+                    previousPlayer = board[row][col];
                 }
-                previousPlayer = board[row + i][col + 1];
                 if (count == 4) {
                     return previousPlayer;
                 }
