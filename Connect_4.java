@@ -46,6 +46,16 @@ public class Connect_4 {
                 }
             }
         }
+        for (int i = 0; i < 7; i++) {
+            previousPlayer = 0;
+            count = 0;
+            for (int j = 0; j < 6; j++) {
+            }
+            previousPlayer = 0;
+            count = 0;
+            for (int j = 0; j < 6; j++) {
+            }
+        }
         return 0;
     }
 }
