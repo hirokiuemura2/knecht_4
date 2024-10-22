@@ -72,10 +72,30 @@ public class Connect_4 {
             previousPlayer = 0;
             count = 0;
             for (int j = 0; j < 6; j++) {
+                if (i + j >= 7) {
+                    j = 7;
+                } else if (previousPlayer == board[i + j][j] || previousPlayer == 0) {
+                    count++;
+                } else {
+                    count = 0;
+                }
+                previousPlayer = board[i + j][j];
+                if (count == 4) {
+                    return previousPlayer;
+                }
             }
             previousPlayer = 0;
             count = 0;
             for (int j = 0; j < 6; j++) {
+                if (previousPlayer == board[i - j][j] || previousPlayer == 0) {
+                    count++;
+                } else {
+                    count = 0;
+                }
+                previousPlayer = board[i - j][j];
+                if (count == 4) {
+                    return previousPlayer;
+                }
             }
         }
         return 0;
