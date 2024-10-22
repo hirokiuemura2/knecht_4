@@ -188,7 +188,7 @@ public class Connect_4 {
 
             if (game.makeMove(col)) {
                 game.displayBoard();
-                if (game.checkWin()) {
+                if (checkScore(game.board) != 0) {
                     System.out.println("Player " + (game.currentPlayer == 1 ? "1 (X)" : "2 (O)") + " wins!");
                     break;
                 }
