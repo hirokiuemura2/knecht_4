@@ -10,15 +10,15 @@ public class Connect_4 {
             previousPlayer = 0;
             count = 0;
             for (int j = 0; j < 6; j++) {
-                if (previousPlayer == board[i][j] || previousPlayer == 0) {
+                if (previousPlayer == board[j][i] || previousPlayer == 0) {
                     count++;
-                    previousPlayer = board[i][j];
+                    previousPlayer = board[j][i];
                 } else {
                     count = 0;
-                    if (board[i][j] == 0) {
+                    if (board[j][i] == 0) {
                         j = 7;
                     } else {
-                        previousPlayer = board[i][j];
+                        previousPlayer = board[j][i];
                     }
                 }
                 if (count == 4) {
