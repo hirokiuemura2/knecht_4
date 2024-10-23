@@ -30,7 +30,6 @@ public class Connect_4 {
                     }
                     previousPlayer = board[j][i];
                 }
-                System.out.println(count);
                 if (count == 4) {
                     return previousPlayer;
                 }
@@ -61,23 +60,27 @@ public class Connect_4 {
         }
 
         //diagonal <- test it!
-        // for (int j = 3; j < 6; j--) {
-        //     previousPlayer = 0;
-        //     count = 0;
-        //     int row = j;
-        //     int col = 0;
-        //     for (int i = 0; row - i >= 0; i++) {
-        //         if (previousPlayer == board[row + i][col + i] || previousPlayer == 0) {
-        //             count++;
-        //         } else {
-        //             count = 0;
-        //         }
-        //         previousPlayer = board[row + i][col + i];
-        //         if (count == 4) {
-        //             return previousPlayer;
-        //         }
-        //     }
-        // }
+        for (int j = 3; j < 6; j++) {
+            previousPlayer = 0;
+            count = 0;
+            int row = j;
+            int col = 0;
+            for (int i = 0; row - i >= 0; i++) {
+                System.out.println(col + i + " " + (row - i));
+                if (board[row-i][col+i] == 0) {
+                    count = 0;
+                } else if (previousPlayer == board[row - i][col + i] || previousPlayer == 0) {
+                    count++;
+                } else {
+                    count = 0;
+                }
+                previousPlayer = board[row - i][col + i];
+                if (count == 4) {
+                    return previousPlayer;
+                }
+            }
+            System.out.println();
+        }
         // for (int i = 0; i < 7; i++) {
         //     previousPlayer = 0;
         //     count = 0;
@@ -106,23 +109,27 @@ public class Connect_4 {
         //         }
         //     }
         // }
-        // for (int j = 0; j < 3; j++) {
-        //     previousPlayer = 0;
-        //     count = 0;
-        //     int row = j;
-        //     int col = 7;
-        //     for (int i = 0; col - i >= 0; i++) {
-        //         if (previousPlayer == board[row + i][col - i] || previousPlayer == 0) {
-        //             count++;
-        //         } else {
-        //             count = 0;
-        //         }
-        //         previousPlayer = board[row + i][col - i];
-        //         if (count == 4) {
-        //             return previousPlayer;
-        //         }
-        //     }
-        // }
+        for (int j = 3; j < 6; j++) {
+            previousPlayer = 0;
+            count = 0;
+            int row = j;
+            int col = 6;
+            for (int i = 0; row - i >= 0; i++) {
+                System.out.println(col - i + " " + (row - i));
+                if (board[row-i][col-i] == 0) {
+                    count = 0;
+                } else if (previousPlayer == board[row - i][col - i] || previousPlayer == 0) {
+                    count++;
+                } else {
+                    count = 0;
+                }
+                previousPlayer = board[row - i][col - i];
+                if (count == 4) {
+                    return previousPlayer;
+                }
+            }
+            System.out.println();
+        }
         return 0;
     }
 
