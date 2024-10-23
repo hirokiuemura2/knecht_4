@@ -81,34 +81,36 @@ public class Connect_4 {
             }
             System.out.println();
         }
-        // for (int i = 0; i < 7; i++) {
-        //     previousPlayer = 0;
-        //     count = 0;
-        //     for (int j = 0; j < 6 && i + j < 7; j++) {
-        //         if (previousPlayer == board[j][i + j] || previousPlayer == 0) {
-        //             count++;
-        //         } else {
-        //             count = 0;
-        //         }
-        //         previousPlayer = board[j][i + j];
-        //         if (count == 4) {
-        //             return previousPlayer;
-        //         }
-        //     }
-        //     previousPlayer = 0;
-        //     count = 0;
-        //     for (int j = 0; j < 6 && i - j >= 0; j++) {
-        //         if (previousPlayer == board[j][i - j] || previousPlayer == 0) {
-        //             count++;
-        //         } else {
-        //             count = 0;
-        //         }
-        //         previousPlayer = board[j][i - j];
-        //         if (count == 4) {
-        //             return previousPlayer;
-        //         }
-        //     }
-        // }
+        for (int i = 0; i < 7; i++) {
+            previousPlayer = 0;
+            count = 0;
+            for (int j = 0; j < 6 && i + j < 7; j++) {
+                if (board[5-j][i+j] == 0) {
+                    count = 0;
+                } else if (previousPlayer == board[5-j][i + j] || previousPlayer == 0) {
+                    count++;
+                } else {
+                    count = 0;
+                }
+                previousPlayer = board[5-j][i + j];
+                if (count == 4) {
+                    return previousPlayer;
+                }
+            }
+            previousPlayer = 0;
+            count = 0;
+            for (int j = 0; j < 6 && i - j >= 0; j++) {
+                if (previousPlayer == board[j][i - j] || previousPlayer == 0) {
+                    count++;
+                } else {
+                    count = 0;
+                }
+                previousPlayer = board[j][i - j];
+                if (count == 4) {
+                    return previousPlayer;
+                }
+            }
+        }
         for (int j = 3; j < 6; j++) {
             previousPlayer = 0;
             count = 0;
