@@ -83,7 +83,6 @@ public class Connect_4 {
             previousPlayer = 0;
             count = 0;
             for (int j = 0; j < 6 && i + j < 7; j++) {
-                System.out.println(i + j + " " + (5-j));
                 if (board[5-j][i+j] == 0) {
                     count = 0;
                 } else if (previousPlayer == board[5-j][i + j] || previousPlayer == 0) {
@@ -96,7 +95,6 @@ public class Connect_4 {
                     return previousPlayer;
                 }
             }
-            System.out.println();
             previousPlayer = 0;
             count = 0;
             for (int j = 0; j < 6 && i - j >= 0; j++) {
@@ -119,7 +117,6 @@ public class Connect_4 {
             int row = j;
             int col = 6;
             for (int i = 0; row - i >= 0; i++) {
-                System.out.println(col - i + " " + (row - i));
                 if (board[row-i][col-i] == 0) {
                     count = 0;
                 } else if (previousPlayer == board[row - i][col - i] || previousPlayer == 0) {
@@ -132,7 +129,6 @@ public class Connect_4 {
                     return previousPlayer;
                 }
             }
-            System.out.println();
         }
         return 0;
     }
