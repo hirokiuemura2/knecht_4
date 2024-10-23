@@ -45,13 +45,8 @@ public class Connect_4 {
                     previousPlayer = board[i][j];
                 }
                 else{
-                    if (board[i][j] == 0){
-                        j = 8;
-                    }
-                    else{
-                        previousPlayer = board[i][j];
-                        count = 0;
-                    }
+                    previousPlayer = board[i][j];
+                    count = 0;
                 }
                 if (count == 4){
                     return previousPlayer;
@@ -59,7 +54,7 @@ public class Connect_4 {
             }
         }
 
-        //diagonal <- test it!
+        //diagonal
         for (int j = 3; j < 6; j++) {
             previousPlayer = 0;
             count = 0;
