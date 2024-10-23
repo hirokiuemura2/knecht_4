@@ -17,29 +17,31 @@ public class Connect_4 {
         for (int i = 0; i < 7; i++) {
             previousPlayer = 0;
             count = 0;
-            for (int j = 0; j < 6; j++) {
-                if (previousPlayer == board[j][i] || previousPlayer == 0) {
+            for (int j = 5; j >= 0; j--) {
+                if (board[j][i] == 0) {
+                    j = -1;
+                } else if (previousPlayer == board[j][i] || previousPlayer == 0 && board[j][i] != 0) {
                     count++;
                     previousPlayer = board[j][i];
                 } else {
                     count = 0;
-                    if (board[j][i] == 0) {
-                        j = 7;
-                    } else {
-                        previousPlayer = board[j][i];
+                    if (board[j][i] != 0) {
+                        count = 1;
                     }
+                    previousPlayer = board[j][i];
                 }
+                System.out.println(count);
                 if (count == 4) {
                     return previousPlayer;
                 }
             }
         }
         //horizontal - faydhi
-        for(int i = 0; i < 6; i++){
+        for(int i = 5; i >= 0; i--){
             previousPlayer = 0;
             count = 0;
             for (int j = 0; j < 7; j++){
-                if(previousPlayer == board[i][j] || previousPlayer == 0){
+                if(board[i][j] != 0 && (previousPlayer == board[i][j] || previousPlayer == 0)){
                     count++;
                     previousPlayer = board[i][j];
                 }
@@ -58,69 +60,69 @@ public class Connect_4 {
             }
         }
 
-        //diagonal
-        for (int j = 2; j >= 0; j--) {
-            previousPlayer = 0;
-            count = 0;
-            int row = j;
-            int col = 0;
-            for (int i = 0; row + i < 6; i++) {
-                if (previousPlayer == board[row + i][col + i] || previousPlayer == 0) {
-                    count++;
-                } else {
-                    count = 0;
-                }
-                previousPlayer = board[row + i][col + i];
-                if (count == 4) {
-                    return previousPlayer;
-                }
-            }
-        }
-        for (int i = 0; i < 7; i++) {
-            previousPlayer = 0;
-            count = 0;
-            for (int j = 0; j < 6 && i + j < 7; j++) {
-                if (previousPlayer == board[j][i + j] || previousPlayer == 0) {
-                    count++;
-                } else {
-                    count = 0;
-                }
-                previousPlayer = board[j][i + j];
-                if (count == 4) {
-                    return previousPlayer;
-                }
-            }
-            previousPlayer = 0;
-            count = 0;
-            for (int j = 0; j < 6 && i - j >= 0; j++) {
-                if (previousPlayer == board[j][i - j] || previousPlayer == 0) {
-                    count++;
-                } else {
-                    count = 0;
-                }
-                previousPlayer = board[j][i - j];
-                if (count == 4) {
-                    return previousPlayer;
-                }
-            }
-        }
-        for (int j = 0; j < 3; j++) {
-            previousPlayer = 0;
-            count = 0;
-            int row = j;
-            int col = 7;
-            for (int i = 0; col - i >= 0; i++) {
-                if (previousPlayer == board[row + i][col - i] || previousPlayer == 0) {
-                    count++;
-                } else {
-                    count = 0;
-                }
-                previousPlayer = board[row + i][col - i];
-                if (count == 4) {
-                    return previousPlayer;
-                }
-            }
-        }
+        //diagonal <- test it!
+        // for (int j = 3; j < 6; j--) {
+        //     previousPlayer = 0;
+        //     count = 0;
+        //     int row = j;
+        //     int col = 0;
+        //     for (int i = 0; row - i >= 0; i++) {
+        //         if (previousPlayer == board[row + i][col + i] || previousPlayer == 0) {
+        //             count++;
+        //         } else {
+        //             count = 0;
+        //         }
+        //         previousPlayer = board[row + i][col + i];
+        //         if (count == 4) {
+        //             return previousPlayer;
+        //         }
+        //     }
+        // }
+        // for (int i = 0; i < 7; i++) {
+        //     previousPlayer = 0;
+        //     count = 0;
+        //     for (int j = 0; j < 6 && i + j < 7; j++) {
+        //         if (previousPlayer == board[j][i + j] || previousPlayer == 0) {
+        //             count++;
+        //         } else {
+        //             count = 0;
+        //         }
+        //         previousPlayer = board[j][i + j];
+        //         if (count == 4) {
+        //             return previousPlayer;
+        //         }
+        //     }
+        //     previousPlayer = 0;
+        //     count = 0;
+        //     for (int j = 0; j < 6 && i - j >= 0; j++) {
+        //         if (previousPlayer == board[j][i - j] || previousPlayer == 0) {
+        //             count++;
+        //         } else {
+        //             count = 0;
+        //         }
+        //         previousPlayer = board[j][i - j];
+        //         if (count == 4) {
+        //             return previousPlayer;
+        //         }
+        //     }
+        // }
+        // for (int j = 0; j < 3; j++) {
+        //     previousPlayer = 0;
+        //     count = 0;
+        //     int row = j;
+        //     int col = 7;
+        //     for (int i = 0; col - i >= 0; i++) {
+        //         if (previousPlayer == board[row + i][col - i] || previousPlayer == 0) {
+        //             count++;
+        //         } else {
+        //             count = 0;
+        //         }
+        //         previousPlayer = board[row + i][col - i];
+        //         if (count == 4) {
+        //             return previousPlayer;
+        //         }
+        //     }
+        // }
         return 0;
     }
 
