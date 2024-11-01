@@ -10,7 +10,7 @@ public class Connect_4 {
         initializeBoard();
     }
     //returns the winner (1, 0, or -1)
-    public static int checkScore(int[][] board) {
+    private int checkScore() {
         int count = 0;
         int previousPlayer = 0;
         //vertical
@@ -193,7 +193,7 @@ public class Connect_4 {
 
             if (game.makeMove(col)) {
                 game.displayBoard();
-                if (checkScore(game.board) != 0) {
+                if (game.checkScore() != 0) {
                     System.out.println("Player " + (game.currentPlayer == 1 ? "1 (X)" : "2 (O)") + " wins!");
                     break;
                 }
