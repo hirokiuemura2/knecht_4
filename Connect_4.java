@@ -100,12 +100,6 @@ public class Connect_4 {
                     count++;
                 } else {
                     count = 0;
-                    if (i == 3 && i - j == 0) {
-                        System.out.println("test");
-                    }
-                }
-                if (i == 3) {
-                    System.out.println(5-j + " " + (i-j) + " " + count);
                 }
                 previousPlayer = board[j][i - j];
                 if (count == 4) {
