@@ -93,12 +93,19 @@ public class Connect_4 {
             previousPlayer = 0;
             count = 0;
             for (int j = 0; j < 6 && i - j >= 0; j++) {
-                if (board[j][i-j] == 0) {
+                if (board[5-j][i-j] == 0) {
                     count = 0;
-                } else if (previousPlayer == board[j][i - j]) {
+                    
+                } else if (previousPlayer == board[5-j][i - j] || previousPlayer == 0) {
                     count++;
                 } else {
                     count = 0;
+                    if (i == 3 && i - j == 0) {
+                        System.out.println("test");
+                    }
+                }
+                if (i == 3) {
+                    System.out.println(5-j + " " + (i-j) + " " + count);
                 }
                 previousPlayer = board[j][i - j];
                 if (count == 4) {
