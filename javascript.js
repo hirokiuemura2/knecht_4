@@ -6,12 +6,8 @@ container.appendChild(bigContainer);
 
 // const body = document.querySelector('body');
 const allSquares = document.querySelectorAll('.square');
-allSquares.forEach(square => {
-    square.addEventListener('click', () => {
-        //call function here.
-    })
-    
-})
+// allSquares.forEach(square => {
+// })
 // let removeEverything = () => {
 //     const allSquares = document.querySelectorAll('.square');
 //     const allRows = document.querySelectorAll('.rows');
@@ -22,7 +18,7 @@ allSquares.forEach(square => {
 //         row.remove();
 //     })
 // }
-
+let otherSquare = null;
 let addSquares = (num1, num2) => {
     for (let i = 0; i < num1; i++) {
         let newContainer = document.createElement('div');
@@ -36,13 +32,22 @@ let addSquares = (num1, num2) => {
             squareContainer.textContent="";
             squareContainer.addEventListener('mouseover', () => {
                 squareContainer.style.backgroundColor = "red";
-            });
-            squareContainer.addEventListener('mouseleave', () => {
                 if (!squareContainer.classList.contains(0)) {
-                    let otherSquare = bigContainer.querySelector('.row5').querySelector('.col'+j);
+                    otherSquare = bigContainer.querySelector('.row5').querySelector('.col'+j);
                     otherSquare.style.backgroundColor = 'blue';
                 }
-                
+            });
+            squareContainer.addEventListener('click', () => {
+                let x = 10;
+                let y = 10;
+                //function call to select column
+                console.log("clicked " + squareContainer.classList[1].charAt(3));
+                console.log(squareContainer.parentElement);
+            });
+            squareContainer.addEventListener('mouseleave', () => {
+                if (otherSquare) {
+                    otherSquare.style.backgroundColor = "white";
+                }
                 squareContainer.style.backgroundColor = "white";
             });
         }
@@ -50,6 +55,10 @@ let addSquares = (num1, num2) => {
 }
 
 addSquares(6,7);
+
+let updateSquares = () => {
+    return;
+}
 
 // let sizer = document.querySelector('.sizer');
 // sizer.addEventListener('click',() => {
@@ -61,8 +70,8 @@ addSquares(6,7);
 //     addSquares(num);
 // });
 let reset = document.querySelector('.reset');
-reset.addEventListener('click',() => {
-    allSquares.forEach(square, () => {
-        square.style.backgroundColor = "white";
-    })
-});
+// reset.addEventListener('click',() => {
+//     allSquares.forEach(square, () => {
+//         square.style.backgroundColor = "white";
+//     })
+// });
