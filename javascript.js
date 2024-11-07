@@ -71,7 +71,5 @@ let updateSquares = () => {
 // });
 let reset = document.querySelector('.reset');
 // reset.addEventListener('click',() => {
-//     allSquares.forEach(square, () => {
-//         square.style.backgroundColor = "white";
-//     })
+//     updateSquares();
 // });
