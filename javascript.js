@@ -144,34 +144,51 @@ bigContainer.classList.add('bigContainer');
 const container = document.querySelector('body');
 container.appendChild(bigContainer);
 
-const allSquares = document.querySelectorAll('.square');
+// const allSquares = document.querySelectorAll('.square');
+
+let updateSquares = () => {
+    const allSquares = document.querySelectorAll('.square');
+    allSquares.forEach((square) => {
+        console.log(square);
+        let row = square.classList[1].charAt(3);
+        // console.log(square.parentElement.classList[1]);
+        let col = square.parentElement.classList[1].charAt(3);
+        let player = newGame.board[row][col];
+        square.textContent = player == -1 ? 'O' : player == 1 ? 'X' : ' ';
+    })
+    console.log("updated");
+    return;
+}
 
 let otherSquare = null;
-let addSquares = (num1, num2) => {
-    for (let i = 0; i < num1; i++) {
+let addSquares = (rows, cols) => {
+    for (let j = 0; j < cols; j++) {
         let newContainer = document.createElement('div');
         bigContainer.append(newContainer);
-        newContainer.classList.add('rowContainer', 'row' + i);
-        for (let j = 0; j < num2; j++) {
+        newContainer.classList.add('colContainer', 'col' + j);
+        for (let i = 0; i < rows; i++) {
             let squareContainer = document.createElement('div');
             newContainer.append(squareContainer);
             squareContainer.classList.add('square');
-            squareContainer.classList.add("col"+ j);
+            squareContainer.classList.add("row"+ i);
             squareContainer.textContent="";
             squareContainer.addEventListener('mouseover', () => {
-                squareContainer.style.backgroundColor = "red";
-                if (!squareContainer.classList.contains(0)) {
-                    otherSquare = bigContainer.querySelector('.row5').querySelector('.col'+j);
-                    otherSquare.style.backgroundColor = 'blue';
-                }
+                // edit later
+                otherSquare = bigContainer.querySelector('.col' + j).querySelector('.row5');
+                otherSquare.style.backgroundColor = 'blue';
             });
             squareContainer.addEventListener('click', () => {
                 let x = 10;
                 let y = 10;
                 //function call to select column
-                //makeMove(squareContainer.classList[1].charAt(3));
-                console.log("clicked " + squareContainer.classList[1].charAt(3));
-                console.log(squareContainer.parentElement);
+                newGame.makeMove(squareContainer.parentElement.classList[1].charAt(3));
+                newGame.displayBoard();
+                updateSquares();
+                newGame.switchPlayer();
+                // newGame.checkScore();
+                // 
+                // 
+                console.log(squareContainer.classList);
             });
             squareContainer.addEventListener('mouseleave', () => {
                 if (otherSquare) {
@@ -185,9 +202,7 @@ let addSquares = (num1, num2) => {
 
 addSquares(6,7);
 
-let updateSquares = () => {
-    return;
-}
+
 
 let reset = document.querySelector('.reset');
 // reset.addEventListener('click',() => {
@@ -196,3 +211,4 @@ let reset = document.querySelector('.reset');
 
 
 newGame.displayBoard();
+updateSquares();

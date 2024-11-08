@@ -1,58 +1,46 @@
 body {
     display: flex;
-    align-items: space-around;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    overflow: visible;
-    font-size: clamp(2rem, 2.5vw, 4rem);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-/* button {
-    flex-grow: 0;
-    max-width: 200px;
-    margin: 20px;
-} */
+h1 {
+    text-align: center;
+    font-size: clamp(3rem, 5vw, 6rem);
+}
 
 .bigContainer {
     display: flex;
-    flex-grow: 1;
-    flex-shrink: 1;
-    border: 0px;
-    flex-direction: column;
-    border-style: solid;
-    box-sizing: border-box;
-    margin: 20px;
-    align-items: center;
+    flex: auto;
+    gap: 0px;
+    justify-content: space-around;
+    margin: 50px;
+    min-width: 490px;
     max-width: 1050px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+    width: 55%;
+    height: 55%;
+}
+
+.colContainer {
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+    gap: 0px;
 }
 
 .square {
     display: flex;
-    flex-grow: 1;
-    flex-shrink: 1;
-    /* box-sizing: border-box; */
-    max-height: 150px;
-    max-width: 150px;
-    min-width: 50px;
-    min-height: 50px;
-    align-items: center;
-    justify-content: center;
-    border-style: solid !important;
+
+    aspect-ratio: 1;
+    border-width: 2px;
+    border-style: solid;
     border-color: black;
-    border: 3px;
-    /* transition-delay: 1s; */
-} 
 
-/* .square:hover {
-    background-color: red;
-    transition-delay: 0s;
-} */
-
-.rowContainer {
-    display: flex;
-    flex-grow: 1;
-    align-self: stretch;
-    max-height: 150px;
-    max-width: 1050px;
-    aspect-ratio: 7/1;
+    vertical-align: middle;
+    justify-content: center;
+    font-size: clamp(3.2rem, 6.4vw, 8rem);
 }
