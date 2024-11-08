@@ -136,5 +136,5 @@ class Connect4 {
 
 }
 
-const game =new Connect4();
-game.play();
+// const game =new Connect4();
+// game.play();
