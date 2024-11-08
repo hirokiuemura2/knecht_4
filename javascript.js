@@ -2,22 +2,9 @@ let bigContainer = document.createElement('div');
 bigContainer.classList.add('bigContainer');
 const container = document.querySelector('body');
 container.appendChild(bigContainer);
-// bigContainer.classList.add("bigContainer");
 
-// const body = document.querySelector('body');
 const allSquares = document.querySelectorAll('.square');
-// allSquares.forEach(square => {
-// })
-// let removeEverything = () => {
-//     const allSquares = document.querySelectorAll('.square');
-//     const allRows = document.querySelectorAll('.rows');
-//     allSquares.forEach(square => {
-//         square.remove();
-//     });
-//     allRows.forEach(row => {
-//         row.remove();
-//     })
-// }
+
 let otherSquare = null;
 let addSquares = (num1, num2) => {
     for (let i = 0; i < num1; i++) {
@@ -60,15 +47,6 @@ let updateSquares = () => {
     return;
 }
 
-// let sizer = document.querySelector('.sizer');
-// sizer.addEventListener('click',() => {
-//     let num = 200;
-//     while (num > 100 || num < 1) {
-//         num = prompt("Enter a number, 1-100 (inclusive)");
-//     }
-//     removeEverything();
-//     addSquares(num);
-// });
 let reset = document.querySelector('.reset');
 // reset.addEventListener('click',() => {
 //     updateSquares();
