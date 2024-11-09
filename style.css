@@ -34,6 +34,7 @@ h1 {
 
 .square {
     display: flex;
+    padding: 0;
 
     aspect-ratio: 1;
     border-width: 2px;

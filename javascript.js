@@ -5,6 +5,7 @@ class Connect4 {
         this.board = Array.from({ length: this.ROWS }, () => Array(this.COLS).fill(0));
         this.currentPlayer = 1;
         this.initializeBoard();
+        this.hasBeenWon = false;
     }
 
 
@@ -84,30 +85,30 @@ class Connect4 {
             { rowStep: -1, colStep: 1 },
             { rowStep: -1, colStep: -1 }
         ];
-        for (const { rowStep, colStep } of directions) {
-            for (let startRow = this.ROWS - 1; startRow >= 3; startRow) {
-                for (let startCol = 0; startCol < this.COLS - 3; startCol++) {
-                    previousPlayer = 0;
-                    count = 0;
-                    for (let i = 0; i < 4; i++) {
-                        const row = startRow + i * rowStep;
-                        const col = startCol + i * colStep;
-                        if (this.board[row][col] === 0) {
-                            count = 0;
-                            break;
-                        }
-                        if (previousPlayer === this.board[row][col] || previousPlayer === 0) {
-                            count++;
-                            previousPlayer = this.board[row][col];
-                        } else {
-                            count = 1;
-                            previousPlayer = this.board[row][col];
-                        }
-                        if (count === 4) return previousPlayer;
-                    }
-                }
-            }
-        }
+        // for (const { rowStep, colStep } of directions) {
+        //     for (let startRow = this.ROWS - 1; startRow >= 3; startRow--) {
+        //         for (let startCol = 0; startCol < this.COLS - 3; startCol++) {
+        //             previousPlayer = 0;
+        //             count = 0;
+        //             for (let i = 0; i < 4; i++) {
+        //                 const row = startRow + i * rowStep;
+        //                 const col = startCol + i * colStep;
+        //                 if (this.board[row][col] === 0) {
+        //                     count = 0;
+        //                     break;
+        //                 }
+        //                 if (previousPlayer === this.board[row][col] || previousPlayer === 0) {
+        //                     count++;
+        //                     previousPlayer = this.board[row][col];
+        //                 } else {
+        //                     count = 1;
+        //                     previousPlayer = this.board[row][col];
+        //                 }
+        //                 if (count === 4) return previousPlayer;
+        //             }
+        //         }
+        //     }
+        // }
         return 0;
     }
 
@@ -143,15 +144,15 @@ let bigContainer = document.createElement('div');
 bigContainer.classList.add('bigContainer');
 const container = document.querySelector('body');
 container.appendChild(bigContainer);
+let textContainer = document.createElement('div');
+textContainer.classList.add("text");
+textContainer.textContent = "Welcome to Connect 4!";
 
-// const allSquares = document.querySelectorAll('.square');
 
 let updateSquares = () => {
     const allSquares = document.querySelectorAll('.square');
     allSquares.forEach((square) => {
-        console.log(square);
         let row = square.classList[1].charAt(3);
-        // console.log(square.parentElement.classList[1]);
         let col = square.parentElement.classList[1].charAt(3);
         let player = newGame.board[row][col];
         square.textContent = player == -1 ? 'O' : player == 1 ? 'X' : ' ';
@@ -178,17 +179,23 @@ let addSquares = (rows, cols) => {
                 otherSquare.style.backgroundColor = 'blue';
             });
             squareContainer.addEventListener('click', () => {
+                if (newGame.hasBeenWon) {
+                    return;
+                }
                 let x = 10;
                 let y = 10;
                 //function call to select column
-                newGame.makeMove(squareContainer.parentElement.classList[1].charAt(3));
-                newGame.displayBoard();
-                updateSquares();
-                newGame.switchPlayer();
-                // newGame.checkScore();
-                // 
-                // 
-                console.log(squareContainer.classList);
+                if(newGame.makeMove(squareContainer.parentElement.classList[1].charAt(3))) {
+                    updateSquares();
+                    newGame.switchPlayer();
+                    let winner = newGame.checkScore();
+                    if (winner != 0) {
+                        newGame.hasBeenWon = true;
+                        textContainer.textContent = `Player ${winner == 1 ? 1 : 2} Wins`;
+                    }
+                } else {
+                    //display error message here
+                }
             });
             squareContainer.addEventListener('mouseleave', () => {
                 if (otherSquare) {
@@ -201,7 +208,7 @@ let addSquares = (rows, cols) => {
 }
 
 addSquares(6,7);
-
+container.append(textContainer);
 
 
 let reset = document.querySelector('.reset');
@@ -210,5 +217,5 @@ let reset = document.querySelector('.reset');
 // });
 
 
-newGame.displayBoard();
+//newGame.displayBoard();
 updateSquares();
