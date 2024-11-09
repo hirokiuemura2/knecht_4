@@ -145,8 +145,11 @@ bigContainer.classList.add('bigContainer');
 const container = document.querySelector('body');
 container.appendChild(bigContainer);
 let textContainer = document.createElement('div');
+let textContainer2 = document.createElement('div');
 textContainer.classList.add("text");
+textContainer2.classList.add("text");
 textContainer.textContent = "Welcome to Connect 4!";
+textContainer2.textContent = `Player ${newGame.currentPlayer == 1 ? 1 : 2}'s turn`;
 
 
 let updateSquares = () => {
@@ -188,6 +191,8 @@ let addSquares = (rows, cols) => {
                 if(newGame.makeMove(squareContainer.parentElement.classList[1].charAt(3))) {
                     updateSquares();
                     newGame.switchPlayer();
+                    textContainer.textContent = `Player ${newGame.currentPlayer == 1 ? 1 : 2}'s turn`;
+                    textContainer2.textContent = "";
                     let winner = newGame.checkScore();
                     if (winner != 0) {
                         newGame.hasBeenWon = true;
@@ -195,6 +200,8 @@ let addSquares = (rows, cols) => {
                     }
                 } else {
                     //display error message here
+                    textContainer.textContent = "Please choose a different column."
+                    textContainer2.textContent = `Player ${newGame.currentPlayer == 1 ? 1 : 2}'s turn`;
                 }
             });
             squareContainer.addEventListener('mouseleave', () => {
@@ -209,6 +216,7 @@ let addSquares = (rows, cols) => {
 
 addSquares(6,7);
 container.append(textContainer);
+container.append(textContainer2);
 
 
 let reset = document.querySelector('.reset');
