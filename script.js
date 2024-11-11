@@ -32,25 +32,7 @@ class Connect4 {
                 const cell = document.createElement('div');
                 cell.classList.add('square');
                 cell.dataset.row = row;
-                cell.addEventListener('mouseover', () => {
-                    const items = cell.parentElement.querySelectorAll('.square');
-                    for (let r = this.ROWS - 1; r >= 0; r--) {
-                        if (this.board[r][col] === 0) {
-                            items.forEach((squareTemp) => {
-                                if (parseInt(squareTemp.dataset.row) === r) {
-                                    squareTemp.style.backgroundColor = '#333';
-                                }
-                            });
-                            r = -1;
-                        }
-                    }
-                });
-                cell.addEventListener('mouseleave', () => {
-                    const items = cell.parentElement.querySelectorAll('.square');
-                    items.forEach(squareTemp => {
-                        squareTemp.style.backgroundColor = 'black';
-                    });
-                });
+
                 colContainer.appendChild(cell);
             }
 
@@ -62,6 +44,26 @@ class Connect4 {
                 if (!this.hasBeenWon && (this.currentPlayer === 1 || this.gameMode === "player")) {
                     this.makeMove(col);
                 }
+            });
+            //adds mouse hovering listeners to create appropriate shading
+            colContainer.addEventListener('mouseover', () => {
+                const items = colContainer.querySelectorAll('.square');
+                for (let r = this.ROWS - 1; r >= 0; r--) {
+                    if (this.board[r][col] === 0) {
+                        items.forEach((squareTemp) => {
+                            if (parseInt(squareTemp.dataset.row) === r) {
+                                squareTemp.style.backgroundColor = '#333';
+                            }
+                        });
+                        r = -1;
+                    }
+                }
+            });
+            colContainer.addEventListener('mouseleave', () => {
+                const items = colContainer.querySelectorAll('.square');
+                items.forEach(squareTemp => {
+                    squareTemp.style.backgroundColor = 'black';
+                });
             });
         }
     }
@@ -192,11 +194,24 @@ class Connect4 {
 
     updateBoard() {
         const cells = document.querySelectorAll('.square');
+        const hasSwitchedCell = false;
         cells.forEach(cell => {
-            cell.style.backgroundColor = '';
             const row = parseInt(cell.dataset.row, 10);
             const col = parseInt(cell.parentNode.dataset.col, 10);
             const player = this.board[row][col];
+            cell.style.backgroundColor = '';
+            //shifts shading to row above.
+            // if (cell.style.backgroundColor != '' && !hasSwitchedCell) {
+            //     const squares = cell.parentElement.querySelectorAll('.square');
+            //     squares.forEach((square) => {
+            //         if (parseInt(square.dataset.row) === row - 1 && col === parseInt(square.parentNode.dataset.col)) {
+            //             square.style.backgroundColor = '#333';
+            //             hasSwitchedCell = true;
+            //         }
+            //     });
+            //     cell.style.backgroundColor = '';
+            // }
+            
 
             cell.classList.remove('x', 'o');
             if (player === 1) {
