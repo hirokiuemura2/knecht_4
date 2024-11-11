@@ -52,11 +52,6 @@ class Connect4 {
                     });
                 });
                 colContainer.appendChild(cell);
-
-                // let circle = cell.createElement('div');
-                // circle.classList.add('.circle');
-                // circle.style.backgroundColor = 'red';
-                // cell.appendChild(circle);
             }
 
             // Append the column container to the main container
@@ -69,15 +64,14 @@ class Connect4 {
                 }
             });
         }
-        // const squaresNew = document.querySelectorAll('.square');
-        // squaresNew.forEach((square) => {
-            
-        // });
     }
     makeMove(col) {
         if (this.hasBeenWon) return;
-        if (this.board[0][col] !== 0) return;
-
+        if (this.board[0][col] !== 0) {
+            document.getElementById("statusMessage2").textContent = "Please choose a different column.";
+            return;
+        };
+        document.getElementById("statusMessage2").textContent = "";
         for (let row = this.ROWS - 1; row >= 0; row--) {
             if (this.board[row][col] === 0) {
                 this.board[row][col] = this.currentPlayer;
@@ -95,7 +89,7 @@ class Connect4 {
                 }
                 break;
             }
-        }
+        } 
     }
 
     aiMove() {
