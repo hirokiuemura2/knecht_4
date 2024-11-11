@@ -85,30 +85,30 @@ class Connect4 {
             { rowStep: -1, colStep: 1 },
             { rowStep: -1, colStep: -1 }
         ];
-        // for (const { rowStep, colStep } of directions) {
-        //     for (let startRow = this.ROWS - 1; startRow >= 3; startRow--) {
-        //         for (let startCol = 0; startCol < this.COLS - 3; startCol++) {
-        //             previousPlayer = 0;
-        //             count = 0;
-        //             for (let i = 0; i < 4; i++) {
-        //                 const row = startRow + i * rowStep;
-        //                 const col = startCol + i * colStep;
-        //                 if (this.board[row][col] === 0) {
-        //                     count = 0;
-        //                     break;
-        //                 }
-        //                 if (previousPlayer === this.board[row][col] || previousPlayer === 0) {
-        //                     count++;
-        //                     previousPlayer = this.board[row][col];
-        //                 } else {
-        //                     count = 1;
-        //                     previousPlayer = this.board[row][col];
-        //                 }
-        //                 if (count === 4) return previousPlayer;
-        //             }
-        //         }
-        //     }
-        // }
+        for (const { rowStep, colStep } of directions) {
+            // for (let startRow = this.ROWS - 1; startRow >= 3; startRow--) {
+            //     for (let startCol = 0; startCol < this.COLS - 3; startCol++) {
+            //         previousPlayer = 0;
+            //         count = 0;
+            //         for (let i = 0; i < 4; i++) {
+            //             const row = startRow + i * rowStep;
+            //             const col = startCol + i * colStep;
+            //             if (this.board[row][col] === 0) {
+            //                 count = 0;
+            //                 break;
+            //             }
+            //             if (previousPlayer === this.board[row][col] || previousPlayer === 0) {
+            //                 count++;
+            //                 previousPlayer = this.board[row][col];
+            //             } else {
+            //                 count = 1;
+            //                 previousPlayer = this.board[row][col];
+            //             }
+            //             if (count === 4) return previousPlayer;
+            //         }
+            //     }
+            // }
+        }
         return 0;
     }
 
@@ -219,7 +219,7 @@ container.append(textContainer);
 container.append(textContainer2);
 
 
-let reset = document.querySelector('.reset');
+let reset = document.createElement('button');
 // reset.addEventListener('click',() => {
 //     updateSquares();
 // });

@@ -1,13 +1,40 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./script.js" defer></script>
+    <link rel="stylesheet" href="./styles.css">
+    <title>Connect 4</title>
+</head>
+<body>
+</body>
+</html> -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./javascript.js" defer></script>
-    <link rel="stylesheet" href="./style.css">
-    <title>Connect 4</title>
+    <title>Connect 4 Game</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Connect 4</h1>
+    <h1>Connect 4 Game</h1>
+    
+    <div id="modeSelection">
+      <button id="playerVsPlayer">Player vs Player</button>
+      <button id="playerVsAIEasy">Player vs AI (Easy)</button>
+      <button id="playerVsAIMedium">Player vs AI (Medium)</button>
+      <button id="playerVsAIHard">Player vs AI (Hard)</button>
+  </div>
+  
+
+    <div class="game-container">
+        <div id="statusMessage" class="status-message">Choose a game mode!</div>
+        <div id="bigContainer" class="bigContainer"></div>
+        <button id="resetButton" class="reset">Reset Game</button>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
