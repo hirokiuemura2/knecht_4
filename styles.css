@@ -188,4 +188,6 @@ h1 {
     border-radius: 50%;
     height: 40px;
     width: 40px;
+    transform: translateY(-400px);
+    transition-duration: 0.5s;
 }

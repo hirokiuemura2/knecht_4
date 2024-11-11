@@ -78,7 +78,6 @@ class Connect4 {
             if (this.board[row][col] === 0) {
                 this.board[row][col] = this.currentPlayer;
                 this.updateBoard();
-
                 if (this.checkWin(row, col)) {
                     document.getElementById("statusMessage").textContent = `Player ${this.currentPlayer === 1 ? '1 (X)' : '2 (O)'} wins!`;
                     this.hasBeenWon = true;
@@ -194,24 +193,11 @@ class Connect4 {
 
     updateBoard() {
         const cells = document.querySelectorAll('.square');
-        const hasSwitchedCell = false;
         cells.forEach(cell => {
             const row = parseInt(cell.dataset.row, 10);
             const col = parseInt(cell.parentNode.dataset.col, 10);
             const player = this.board[row][col];
             cell.style.backgroundColor = '';
-            //shifts shading to row above.
-            // if (cell.style.backgroundColor != '' && !hasSwitchedCell) {
-            //     const squares = cell.parentElement.querySelectorAll('.square');
-            //     squares.forEach((square) => {
-            //         if (parseInt(square.dataset.row) === row - 1 && col === parseInt(square.parentNode.dataset.col)) {
-            //             square.style.backgroundColor = '#333';
-            //             hasSwitchedCell = true;
-            //         }
-            //     });
-            //     cell.style.backgroundColor = '';
-            // }
-            
 
             cell.classList.remove('x', 'o');
             if (player === 1) {
@@ -230,9 +216,13 @@ class Connect4 {
                     circle.style.backgroundColor = 'blue';
                     cell.appendChild(circle);
                 }
-                
             } else {
                 cell.textContent = ''; // Clear cell if empty
+            }
+            if (cell.childElementCount !== 0) {
+                setTimeout(() => {
+                    cell.querySelector('.circle').style.transform = "translateY(0px)";
+                }, 1);
             }
         });
     }
