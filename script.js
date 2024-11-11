@@ -52,6 +52,11 @@ class Connect4 {
                     });
                 });
                 colContainer.appendChild(cell);
+
+                // let circle = cell.createElement('div');
+                // circle.classList.add('.circle');
+                // circle.style.backgroundColor = 'red';
+                // cell.appendChild(circle);
             }
 
             // Append the column container to the main container
@@ -64,6 +69,10 @@ class Connect4 {
                 }
             });
         }
+        // const squaresNew = document.querySelectorAll('.square');
+        // squaresNew.forEach((square) => {
+            
+        // });
     }
     makeMove(col) {
         if (this.hasBeenWon) return;
@@ -197,11 +206,22 @@ class Connect4 {
 
             cell.classList.remove('x', 'o');
             if (player === 1) {
-                cell.classList.add('x'); // Apply X styling for Player 1
-                cell.textContent = 'X';
+                if (cell.childElementCount === 0) {
+                    //adding red circle for player 3
+                    let circle = document.createElement('div');
+                    circle.classList.add('circle');
+                    circle.style.backgroundColor = 'red';
+                    cell.appendChild(circle);
+                }
             } else if (player === -1) {
-                cell.classList.add('o'); // Apply O styling for Player 2
-                cell.textContent = 'O';
+                //adding blue circle for player 2
+                if (cell.childElementCount === 0) {
+                    let circle = document.createElement('div');
+                    circle.classList.add('circle');
+                    circle.style.backgroundColor = 'blue';
+                    cell.appendChild(circle);
+                }
+                
             } else {
                 cell.textContent = ''; // Clear cell if empty
             }
