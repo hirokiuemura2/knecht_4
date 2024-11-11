@@ -16,7 +16,8 @@ class Connect4 {
         this.board = Array.from({ length: this.ROWS }, () => Array(this.COLS).fill(0));
         this.currentPlayer = 1; // Start with human player
         this.hasBeenWon = false;
-        document.getElementById("statusMessage").textContent = "Player 1 (X) turn";
+        document.getElementById("statusMessage").textContent = "Player 1's turn";
+        document.getElementById("statusMessage2").textContent = "";
     }
 
     displayBoard() {
@@ -79,18 +80,37 @@ class Connect4 {
                 this.board[row][col] = this.currentPlayer;
                 this.updateBoard();
                 if (this.checkWin(row, col)) {
-                    document.getElementById("statusMessage").textContent = `Player ${this.currentPlayer === 1 ? '1 (X)' : '2 (O)'} wins!`;
+                    document.getElementById("statusMessage").textContent = `Player ${this.currentPlayer === 1 ? '1' : '2'} wins!`;
                     this.hasBeenWon = true;
                 } else {
                     this.currentPlayer *= -1;
-                    document.getElementById("statusMessage").textContent = `Player ${this.currentPlayer === 1 ? '1 (X)' : '2 (O)'}'s turn`;
+                    document.getElementById("statusMessage").textContent = `Player ${this.currentPlayer === 1 ? '1' : '2'}'s turn`;
                     
                     // Trigger AI move only if it's AI's turn
                     if (this.currentPlayer === -1 && this.gameMode !== 'player') this.aiMove();
+                    this.checkDraw();
                 }
+                
                 break;
             }
         } 
+    }
+
+    checkDraw() {
+        var numFree = 0;
+        for (let i = 0; i < this.ROWS; i++) {
+            for (let j = 0; j < this.COLS; j++) {
+                if (this.board[i][j] === 0) {
+                    numFree++;
+                }
+            }
+        }
+        if (numFree === 0) {
+            console.log("Hello, all filled");
+            document.getElementById("statusMessage").textContent = "Draw!";
+            document.getElementById("statusMessage2").textContent = "Please reset or choose new game mode to continue playing.";
+            this.hasBeenWon = true;
+        }
     }
 
     aiMove() {
@@ -219,6 +239,7 @@ class Connect4 {
             } else {
                 cell.textContent = ''; // Clear cell if empty
             }
+            //make circle fall into place if it has been placed.
             if (cell.childElementCount !== 0) {
                 setTimeout(() => {
                     cell.querySelector('.circle').style.transform = "translateY(0px)";
