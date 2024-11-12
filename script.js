@@ -23,6 +23,7 @@ class Connect4 {
     displayBoard() {
         const container = document.getElementById('bigContainer');
         container.innerHTML = ''; // Clear previous board content
+        document.getElementById("statusMessage").style.fontSize = "1.5rem";
         for (let col = 0; col < this.COLS; col++) {
             const colContainer = document.createElement('div');
             colContainer.classList.add('colContainer');
@@ -81,6 +82,7 @@ class Connect4 {
                 this.updateBoard();
                 if (this.checkWin(row, col)) {
                     document.getElementById("statusMessage").textContent = `Player ${this.currentPlayer === 1 ? '1' : '2'} wins!`;
+                    document.getElementById("statusMessage").style.fontSize = "4rem";
                     this.hasBeenWon = true;
                 } else {
                     this.currentPlayer *= -1;
